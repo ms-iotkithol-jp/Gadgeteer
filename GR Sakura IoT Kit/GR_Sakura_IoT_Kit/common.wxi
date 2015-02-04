@@ -1,0 +1,55 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Include>
+  <!-- Change this whenever building a new installer.  The fourth number is ignored, so change one of the top three.
+  Otherwise, users will not be able to upgrade properly; Windows Installer will exit with an error instead of upgrading. -->
+  <!-- Also change the version numbers in Properties/AssemblyInfo.cs for each NETMF version supported -->
+  <?define MainboardSoftwareVersion = "1.0.0.0" ?>
+
+  <!-- Alternatively, to synchronize this mainboard version to a kit version, uncomment the below lines, edit the pathname
+  to point to your kit, and comment out the line above.  You also need to edit AssemblyInfo.cs.  See the kit readme.txt 
+  for more details of how and why to do this. -->
+  <!--
+  <?include $(var.SourcePath)..\..\..\..\..\Kits\EGIoTKit\KitName\Software\KitName\version.wxi ?>
+  <?define MainboardSoftwareVersion = "$(var.KitVersion)" ?>
+  -->
+
+  <!-- SafeMainboardName should match the name printed on the mainboard PCB, without any spaces/punctuation. -->
+  <?define SafeMainboardName = "GR_Sakura_IoT_Kit" ?>
+
+  <!-- SafeManufacturer should match the manufacturer name printed on the mainboard PCB, without any spaces/punctuation. -->
+  <?define SafeManufacturer = "EGIoTKit" ?>
+
+  <!-- FullManufacturer can have spaces, e.g. Microsoft Research.  This shows up as the manufacturer name in add/remove programs. -->
+  <?define FullManufacturer = "EG IoT Kit" ?>
+
+  <!-- These define which versions of NETMF are supported - comment out or delete any unsupported NETMF versions. -->
+  <!-- <?define NETMF41Supported ?> -->
+  <!-- <?define NETMF42Supported ?> -->
+  <?define NETMF43Supported ?>
+
+
+  <!-- No need to change anything below this line. -->
+  <?define OutputFileName = "$(var.SafeManufacturer).Gadgeteer.$(var.SafeMainboardName)"?>
+  <?define ProjectPath = "GR_Sakura_IoT_Kit" ?>
+
+  <!-- These two should be copied over if upgrading from an older template -->
+  <?define guid_msi_upgrade_code =  "17877b75-35cf-429d-98e2-868960317238" ?>
+  <?define guid_msm_package_id = "adefc28a-6263-4eda-869a-c0eab3e0534d" ?>
+
+  <?define guid_msm_comp_resources_id = "30a260c6-8d9b-40fd-8139-db01f4314ed0" ?>
+  <?define guid_msm_comp_registry_id = "9aefcd52-5c14-4b31-99da-75396a2025a4" ?>
+  <?define guid_msm_comp_gadgeteerhardware_id = "7dafa422-4261-4fc9-aaec-6e6d3791f0d6"?>
+
+  <?define guid_msm_comp_files_id_41 = "fce93337-c475-4e5e-96ac-b3654b4665da" ?>
+  <?define guid_msm_comp_files_be_id_41 = "e618430d-cc63-4162-802c-2c4e0c86d067" ?>
+  <?define guid_msm_comp_files_le_id_41 = "ed6693df-f512-4ea7-95ab-ad58ae003d55" ?>
+
+  <?define guid_msm_comp_files_id_42 = "db9cd5d2-6c1c-4268-8084-0bd51a65de29" ?>
+  <?define guid_msm_comp_files_be_id_42 = "3acff51f-cb16-4ba9-8fa8-ea822aad9802" ?>
+  <?define guid_msm_comp_files_le_id_42 = "4bf3e1da-7eaa-403d-9f8f-cdfeced0a6f8" ?>
+
+  <?define guid_msm_comp_files_id_43 = "0207bdfb-1f11-4080-925b-0e7a404f9573" ?>
+  <?define guid_msm_comp_files_be_id_43 = "8705b32b-c741-44d0-8f78-41e7dd07e5ad" ?>
+  <?define guid_msm_comp_files_le_id_43 = "0b9710bc-5c9f-4218-9e7b-65aa6566c01f" ?>
+</Include>
+
