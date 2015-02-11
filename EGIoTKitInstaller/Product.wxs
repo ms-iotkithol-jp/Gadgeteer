@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Wix xmlns="http://schemas.microsoft.com/wix/2006/wi">
+	<Product Id="11e7debe-42eb-4228-8166-efefcae78ce8" Name="EGIoTKit" Language="1033" Version="1.0.0.0" Manufacturer="ms-iotkithol-jp" UpgradeCode="fbf90e45-afa1-475f-90ec-09c02e2702b9">
+		<Package InstallerVersion="200" Compressed="yes" InstallScope="perMachine" />
+
+		<MajorUpgrade DowngradeErrorMessage="A newer version of [ProductName] is already installed." />
+    <Media Id="1" Cabinet="media1.cab" EmbedCab="yes" />
+
+		<Feature Id="ProductFeature" Title="EGIoTKitInstaller" Level="1">
+			<ComponentGroupRef Id="ProductComponents" />
+    </Feature>
+	</Product>
+  
+	<Fragment>
+		<Directory Id="TARGETDIR" Name="SourceDir">
+			<Directory Id="ProgramFilesFolder">
+        <Directory Id="MicroFrameworkDir" Name="Microsoft .NET Micro Framework">
+          <Directory Id="VerDir" Name="v4.3">
+            <Directory Id="AssemDir" Name="Assemblies">
+              <Directory Id="LeDir" Name="le">
+              </Directory>
+              <Directory Id="BeDir" Name="be">
+              </Directory>
+            </Directory>
+          </Directory>
+        </Directory>        
+			</Directory>
+		</Directory>
+	</Fragment>
+
+	<Fragment>
+		<ComponentGroup Id="ProductComponents">
+      <Component Id="CommonComponents" Guid="5f3cbfac-443c-4a22-ba70-c2ebedfe2da3" Directory="AssemDir" >
+        <File Id="EGIoTKitCommon" Name="EGIoTKit.dll" Source="$(var.EGIoTKit.TargetDir)EGIoTKit.dll" Vital="yes" KeyPath="no"  />
+        <File Id="GadgeteerDll" Name="Gadgeteer.dll" Source="$(var.EGIoTKit.TargetDir)Gadgeteer.dll" Vital="yes" KeyPath="no"  />
+        <File Id="GadgeteerWebServer" Name="Gadgeteer.WebServer.dll" Source="$(var.EGIoTKit.TargetDir)Gadgeteer.WebServer.dll" Vital="yes" KeyPath="no"  />
+      </Component>
+      <Component Id="LeComponents" Guid="2d8fdcc5-3712-4df5-92ce-5f417d7c5112" Directory="LeDir">
+        <File Id="EGIoTKitLe" Name="EGIoTKit.dll" Source="$(var.EGIoTKit.TargetDir)le\EGIoTKit.dll" Vital="yes" KeyPath="no"  />
+      </Component>
+      <Component Id="BeComponents" Guid="03a47408-c5c9-4cb8-b132-4c40a9ebc4ce" Directory="BeDir">
+        <File Id="EGIoTKitBe" Name="EGIoTKit.dll" Source="$(var.EGIoTKit.TargetDir)be\EGIoTKit.dll" Vital="yes" KeyPath="no"  />
+      </Component>
+    </ComponentGroup>
+	</Fragment>
+</Wix>
