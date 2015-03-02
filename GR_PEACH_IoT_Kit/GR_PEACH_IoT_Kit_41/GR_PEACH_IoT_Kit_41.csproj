@@ -6,12 +6,12 @@
     <!--VS2010 product version-->
     <ProductVersion>9.0.21022</ProductVersion>
     <SchemaVersion>2.0</SchemaVersion>
-    <ProjectGuid>{52C1A820-1DF3-4322-9D02-D536E16611D8}</ProjectGuid>
+    <ProjectGuid>{55E6D75C-9C3E-4E4F-A65D-77E363B91DF4}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>EGIoTKit.Gadgeteer</RootNamespace>
-    <AssemblyName>EGIoTKit.Gadgeteer.GR_Sakura_IoT_Kit</AssemblyName>
-    <TargetFrameworkVersion>v4.3</TargetFrameworkVersion>
+    <RootNamespace>IoYT.Gadgeteer</RootNamespace>
+    <AssemblyName>IoYT.Gadgeteer.GR_PEACH_IoT_Kit</AssemblyName>
+    <TargetFrameworkVersion>v4.1</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <!--Identify this as a MicroFramework, CSharp project-->
     <ProjectTypeGuids>{b69e3092-b931-443c-abe7-7e7b65f2a37f};{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}</ProjectTypeGuids>
@@ -29,7 +29,7 @@
     <DefineConstants>DEBUG;TRACE</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
-    <DocumentationFile>bin\Debug\EGIoTKit.Gadgeteer.GR_Sakura_IoT_Kit.XML</DocumentationFile>
+    <DocumentationFile>bin\Debug\IoYT.Gadgeteer.GR_PEACH_IoT_Kit.XML</DocumentationFile>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
     <DebugType>pdbonly</DebugType>
@@ -38,12 +38,12 @@
     <DefineConstants>TRACE</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
-    <DocumentationFile>bin\Release\EGIoTKit.Gadgeteer.GR_Sakura_IoT_Kit.XML</DocumentationFile>
+    <DocumentationFile>bin\Release\IoYT.Gadgeteer.GR_PEACH_IoT_Kit.XML</DocumentationFile>
   </PropertyGroup>
   <Import Project="$(NetMfTargetsBaseDir)$(TargetFrameworkVersion)\CSharp.Targets" />
   <ItemGroup>
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="GR_Sakura_IoT_Kit_43.cs" />
+    <Compile Include="GR_PEACH_IoT_Kit_41.cs" />
   </ItemGroup>
   <ItemGroup>
     <Reference Include="Gadgeteer">
@@ -57,11 +57,5 @@
     <Reference Include="mscorlib" />
     <Reference Include="System" />
     <Reference Include="System.IO" />
-  </ItemGroup>
-  <ItemGroup>
-    <ProjectReference Include="..\..\EGIoTKit\EGIoTKit.csproj">
-      <Project>{9EB87637-0162-487D-BBC2-888B49CBF652}</Project>
-      <Name>EGIoTKit</Name>
-    </ProjectReference>
   </ItemGroup>
 </Project>

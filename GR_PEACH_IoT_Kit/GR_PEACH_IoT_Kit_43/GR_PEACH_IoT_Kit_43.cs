@@ -5,20 +5,20 @@ using Microsoft.SPOT.Hardware;
 using GT = Gadgeteer;
 using GTM = Gadgeteer.Modules;
 
-namespace EGIoTKit.Gadgeteer
+namespace IoYT.Gadgeteer
 {
     /// <summary>
-    /// Support class for EG IoT Kit GR Sakura IoT Kit for Microsoft .NET Gadgeteer
+    /// Support class for IoYT GR_PEACH_IoT_Kit for Microsoft .NET Gadgeteer
     /// </summary>
-    public class GR_Sakura_IoT_Kit : GT.Mainboard
+    public class GR_PEACH_IoT_Kit : GT.Mainboard
     {
         // The mainboard constructor gets called before anything else in Gadgeteer (module constructors, etc), 
         // so it can set up fields in Gadgeteer.dll specifying socket types supported, etc.
 
         /// <summary>
-        /// Instantiates a new GR Sakura IoT Kit mainboard
+        /// Instantiates a new GR_PEACH_IoT_Kit mainboard
         /// </summary>
-        public GR_Sakura_IoT_Kit()
+        public GR_PEACH_IoT_Kit()
         {
             // comment the following if you do not support NativeI2C for faster DaisyLink performance
             // otherwise, the DaisyLink I2C interface will be supported in Gadgeteer.dll in managed code.
@@ -180,7 +180,7 @@ namespace EGIoTKit.Gadgeteer
         }
 
         // change the below to the debug led pin on this mainboard
-        private const Cpu.Pin DebugLedPin = (Cpu.Pin)80;
+        private const Cpu.Pin DebugLedPin = Cpu.Pin.GPIO_NONE;
 
         private Microsoft.SPOT.Hardware.OutputPort debugLed;
         /// <summary>
@@ -191,7 +191,7 @@ namespace EGIoTKit.Gadgeteer
         {
             if (debugLed == null)
             {
-   //             if (DebugLedPin == Cpu.Pin.GPIO_NONE) return;
+                if (DebugLedPin == Cpu.Pin.GPIO_NONE) return;
                 debugLed = new OutputPort(DebugLedPin, false);
             }
 
@@ -211,7 +211,7 @@ namespace EGIoTKit.Gadgeteer
         /// </summary>
         public override string MainboardName
         {
-            get { return "GR Sakura IoT Kit"; }
+            get { return "IoYT GR_PEACH_IoT_Kit"; }
         }
 
         /// <summary>
@@ -221,10 +221,6 @@ namespace EGIoTKit.Gadgeteer
         {
             get { return "1.0"; }
         }
-
-        static Cpu.AnalogChannel acThermistor = (Cpu.AnalogChannel)5;   // Analog 5
-        AnalogInput aiThermistor;
-
 
     }
 }

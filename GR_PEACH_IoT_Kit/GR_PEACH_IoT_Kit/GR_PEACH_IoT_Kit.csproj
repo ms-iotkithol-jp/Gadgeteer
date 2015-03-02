@@ -3,7 +3,7 @@
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProjectGuid>{EC34E7A7-F078-4E69-A00D-C082698F5EE9}</ProjectGuid>
+    <ProjectGuid>{714C7CE3-89AC-4950-8EE7-8ED981B43940}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
     <RootNamespace>Ignore</RootNamespace>
@@ -36,9 +36,7 @@
   </PropertyGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <ItemGroup>
-    <None Include="GadgeteerHardware.xml">
-      <SubType>Designer</SubType>
-    </None>
+    <None Include="GadgeteerHardware.xml" />
     <None Include="ReadMe.txt" />
     <None Include="msm.wxs" />
     <None Include="en-us.wxl" />
@@ -48,21 +46,12 @@
     <None Include="Image.jpg" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\GR_Sakura_IoT_Kit_41\GR_Sakura_IoT_Kit_41.csproj">
-      <Project>{2389CF35-31C4-4DA7-A674-D81F23DFEAF8}</Project>
-      <Name>GR_Sakura_IoT_Kit_41</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\GR_Sakura_IoT_Kit_42\GR_Sakura_IoT_Kit_42.csproj">
-      <Project>{54365827-2EEC-44F9-AC51-6FBB0ACCA609}</Project>
-      <Name>GR_Sakura_IoT_Kit_42</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\GR_Sakura_IoT_Kit_43\GR_Sakura_IoT_Kit_43.csproj">
-      <Project>{52C1A820-1DF3-4322-9D02-D536E16611D8}</Project>
-      <Name>GR_Sakura_IoT_Kit_43</Name>
-    </ProjectReference>
+    <ProjectReference Include="..\GR_PEACH_IoT_Kit_41\GR_PEACH_IoT_Kit_41.csproj" />
+    <ProjectReference Include="..\GR_PEACH_IoT_Kit_42\GR_PEACH_IoT_Kit_42.csproj" />
+    <ProjectReference Include="..\GR_PEACH_IoT_Kit_43\GR_PEACH_IoT_Kit_43.csproj" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="GR_SAKURA_IOTKIT.png" />
+    <Content Include="GR_PEACH_IOT_KIT.png" />
   </ItemGroup>
   <Import Project="$(WixTargetsPath)" />
   <PropertyGroup>
@@ -77,11 +66,11 @@
     <Message Text="Compiling msm" />
     <Candle ToolPath="$(WixToolPath)" DefineConstants="BinPath=$(OutDir);SourcePath=$(ProjectDir)" SourceFiles="msm.wxs" OutputFile="$(WixIntermediateFolderPath)\msm.wixobj" />
     <Message Text="Linking msm" />
-    <Light ToolPath="$(WixToolPath)" LocalizationFiles="en-us.wxl" ObjectFiles="$(WixIntermediateFolderPath)\msm.wixobj" OutputFile="$(WixOutputFolderPath)\GR_Sakura_IoT_Kit.msm" />
+    <Light ToolPath="$(WixToolPath)" LocalizationFiles="en-us.wxl" ObjectFiles="$(WixIntermediateFolderPath)\msm.wixobj" OutputFile="$(WixOutputFolderPath)\GR_PEACH_IoT_Kit.msm" />
     <Message Text="Compiling msi" />
     <Candle ToolPath="$(WixToolPath)" DefineConstants="BinPath=$(OutDir);SourcePath=$(ProjectDir)" SourceFiles="msi.wxs" OutputFile="$(WixIntermediateFolderPath)\msi.wixobj" />
     <Message Text="Linking msi" />
-    <Light ToolPath="$(WixToolPath)" LocalizationFiles="en-us.wxl" ObjectFiles="$(WixIntermediateFolderPath)\msi.wixobj" OutputFile="$(WixOutputFolderPath)\GR_Sakura_IoT_Kit.msi" />
+    <Light ToolPath="$(WixToolPath)" LocalizationFiles="en-us.wxl" ObjectFiles="$(WixIntermediateFolderPath)\msi.wixobj" OutputFile="$(WixOutputFolderPath)\GR_PEACH_IoT_Kit.msi" />
   </Target>
   <!--Cleanup for installer -->
   <Target Name="AfterClean">

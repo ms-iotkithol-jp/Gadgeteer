@@ -3,26 +3,26 @@ using Microsoft.SPOT;
 using Microsoft.SPOT.Hardware;
 
 using GT = Gadgeteer;
-using GTM = Gadgeteer.Modules;
 
-namespace EGIoTKit.Gadgeteer
+namespace IoYT.Gadgeteer
 {
     /// <summary>
-    /// Support class for EG IoT Kit GR Sakura IoT Kit for Microsoft .NET Gadgeteer
+    /// Support class for IoYT GR_PEACH_IoT_Kit for Microsoft .NET Gadgeteer
     /// </summary>
-    public class GR_Sakura_IoT_Kit : GT.Mainboard
+    public class GR_PEACH_IoT_Kit : GT.Mainboard
     {
         // The mainboard constructor gets called before anything else in Gadgeteer (module constructors, etc), 
         // so it can set up fields in Gadgeteer.dll specifying socket types supported, etc.
 
         /// <summary>
-        /// Instantiates a new GR Sakura IoT Kit mainboard
+        /// Instantiates a new GR_PEACH_IoT_Kit mainboard
         /// </summary>
-        public GR_Sakura_IoT_Kit()
+        public GR_PEACH_IoT_Kit()
         {
-            // comment the following if you do not support NativeI2C for faster DaisyLink performance
+            // uncomment the following if you support NativeI2CWriteRead for faster DaisyLink performance
             // otherwise, the DaisyLink I2C interface will be supported in Gadgeteer.dll in managed code.
-            GT.SocketInterfaces.I2CBusIndirector nativeI2C = (s, sdaPin, sclPin, address, clockRateKHz, module) => new InteropI2CBus(s, sdaPin, sclPin, address, clockRateKHz, module);
+            GT.Socket.SocketInterfaces.NativeI2CWriteReadDelegate nativeI2C = null; // new GT.Socket.SocketInterfaces.NativeI2CWriteReadDelegate(NativeI2CWriteRead);
+
             GT.Socket socket;
 
             // For each socket on the mainboard, create, configure and register a Socket object with Gadgeteer.dll
@@ -38,7 +38,7 @@ namespace EGIoTKit.Gadgeteer
             // Type 'I' - I2C pins must be used for the correct CpuPins
             // Type 'K' and 'U' - UART pins and UART handshaking pins must be used for the correct CpuPins, and the SerialPortName property must be set.
             // Type 'S' - SPI pins must be used for the correct CpuPins, and the SPIModule property must be set 
-            // Type 'X' - the I2CBusIndirector is set (though by default "nativeI2C" is null) 
+            // Type 'X' - the NativeI2CWriteRead function pointer is set (though by default "nativeI2C" is null) 
             socket = GT.Socket.SocketInterfaces.CreateNumberedSocket(1);
             socket.SupportedTypes = new char[] { 'D', 'I', 'K', 'S', 'U', 'X' };
             socket.CpuPins[3] = (Cpu.Pin)1;
@@ -48,7 +48,7 @@ namespace EGIoTKit.Gadgeteer
             socket.CpuPins[7] = (Cpu.Pin)34;
             socket.CpuPins[8] = (Cpu.Pin)5;
             socket.CpuPins[9] = (Cpu.Pin)7;
-            socket.I2CBusIndirector = nativeI2C;
+            socket.NativeI2CWriteRead = nativeI2C;
             socket.SerialPortName = "COM1";
             socket.SPIModule = SPI.SPI_module.SPI1;
             GT.Socket.SocketInterfaces.RegisterSocket(socket);
@@ -67,7 +67,8 @@ namespace EGIoTKit.Gadgeteer
             // Pin 7 not connected on this socket, so it is left unspecified
             socket.CpuPins[8] = (Cpu.Pin)59;
             socket.CpuPins[9] = (Cpu.Pin)18;
-            socket.AnalogOutput5 = Cpu.AnalogOutputChannel.ANALOG_OUTPUT_0;
+            socket.NativeI2CWriteRead = nativeI2C;
+            socket.AnalogOutput = new GR_PEACH_IoT_Kit_AnalogOut((Cpu.Pin)14);
             GT.Socket.SocketInterfaces.SetAnalogInputFactors(socket, 1, 2, 10);
             socket.AnalogInput3 = Cpu.AnalogChannel.ANALOG_2;
             socket.AnalogInput4 = Cpu.AnalogChannel.ANALOG_3;
@@ -75,35 +76,17 @@ namespace EGIoTKit.Gadgeteer
             socket.PWM7 = Cpu.PWMChannel.PWM_3;
             socket.PWM8 = Cpu.PWMChannel.PWM_0;
             socket.PWM9 = Cpu.PWMChannel.PWM_2;
-            socket.I2CBusIndirector = nativeI2C;
             GT.Socket.SocketInterfaces.RegisterSocket(socket);
+
         }
 
-        private class InteropI2CBus : GT.SocketInterfaces.I2CBus
+        bool NativeI2CWriteRead(int SocketNumber, GT.Socket.Pin sda, GT.Socket.Pin scl, byte address, byte[] write, int writeOffset, int writeLen, byte[] read, int readOffset, int readLen, out int numWritten, out int numRead)
         {
-            public override ushort Address { get; set; }
-            public override int Timeout { get; set; }
-            public override int ClockRateKHz { get; set; }
-
-            private Cpu.Pin sdaPin;
-            private Cpu.Pin sclPin;
-
-            public InteropI2CBus(GT.Socket socket, GT.Socket.Pin sdaPin, GT.Socket.Pin sclPin, ushort address, int clockRateKHz, GTM.Module module)
-            {
-                this.sdaPin = socket.CpuPins[(int)sdaPin];
-                this.sclPin = socket.CpuPins[(int)sclPin];
-                this.Address = address;
-                this.ClockRateKHz = clockRateKHz;
-            }
-
-            public override void WriteRead(byte[] writeBuffer, int writeOffset, int writeLength, byte[] readBuffer, int readOffset, int readLength, out int numWritten, out int numRead)
-            {
-                // implement this method if you support NativeI2CWriteRead for faster DaisyLink performance
-                // otherwise, the DaisyLink I2C interface will be supported in Gadgeteer.dll in managed code. 
-                numRead = 0;
-                numWritten = 0;
-                return;
-            }
+            // implement this method if you support NativeI2CWriteRead for faster DaisyLink performance
+            // otherwise, the DaisyLink I2C interface will be supported in Gadgeteer.dll in managed code. 
+            numRead = 0;
+            numWritten = 0;
+            return false;
         }
 
         private static string[] sdVolumes = new string[] { "SD" };
@@ -137,7 +120,7 @@ namespace EGIoTKit.Gadgeteer
         }
 
         /// <summary>
-        /// Changes the programming interafces to the one specified.
+        /// Changes the programming interafces to the one specified
         /// </summary>
         /// <param name="programmingInterface">The programming interface to use</param>
         public override void SetProgrammingMode(GT.Mainboard.ProgrammingInterface programmingInterface)
@@ -146,56 +129,38 @@ namespace EGIoTKit.Gadgeteer
             // This is an advanced API that we don't expect people to call much.
         }
 
+
         /// <summary>
-        /// Configure the onboard display controller to fulfil the requirements of a display using the RGB sockets.
-        /// If doing this requires rebooting, then the method must reboot and not return.
-        /// If there is no onboard display controller, then NotSupportedException must be thrown.
+        /// This sets the LCD configuration.  If the value GT.Mainboard.LCDConfiguration.HeadlessConfig (=null) is specified, no display support should be active.
+        /// If a non-null value is specified but the property LCDControllerEnabled is false, the LCD controller should be disabled if present,
+        /// though the Bitmap width/height for WPF should be modified to the Width and Height parameters.  This must reboot if the LCD configuration changes require a reboot.
         /// </summary>
-        /// <param name="displayModel">Display model name.</param>
-        /// <param name="width">Display physical width in pixels, ignoring the orientation setting.</param>
-        /// <param name="height">Display physical height in lines, ignoring the orientation setting.</param>
-        /// <param name="orientationDeg">Display orientation in degrees.</param>
-        /// <param name="timing">The required timings from an LCD controller.</param>
-        protected override void OnOnboardControllerDisplayConnected(string displayModel, int width, int height, int orientationDeg, GT.Modules.Module.DisplayModule.TimingRequirements timing)
+        /// <param name="lcdConfig">The LCD Configuration</param>
+        public override void SetLCDConfiguration(GT.Mainboard.LCDConfiguration lcdConfig)
         {
-            throw new NotSupportedException("This mainboard does not support an onboard display controller.");
         }
 
         /// <summary>
-        /// Called when the onboard display controller's display is disconnected, so any resources used by the onboard display controller could be reclaimed. 
+        /// Configures rotation in the LCD controller. This must reboot if performing the LCD rotation requires a reboot.
         /// </summary>
-        protected override void OnOnboardControllerDisplayDisconnected()
+        /// <param name="rotation">The LCD rotation to use</param>
+        /// <returns>true if the rotation is supported</returns>
+        public override bool SetLCDRotation(GT.Modules.Module.DisplayModule.LCDRotation rotation)
         {
-            // it is optional to do anything with this method
-        }
-
-        /// <summary>
-        /// Ensures that the pins on R, G and B sockets (which also have other socket types) are available for use for non-display purposes.
-        /// If doing this requires rebooting, then the method must reboot and not return.
-        /// If there is no onboard display controller, or it is not possible to disable the onboard display controller, then NotSupportedException must be thrown.
-        /// </summary>
-        public override void EnsureRgbSocketPinsAvailable()
-        {
-            throw new NotSupportedException("This mainboard does not support an onboard display controller.");
+            return false;
         }
 
         // change the below to the debug led pin on this mainboard
-        private const Cpu.Pin DebugLedPin = (Cpu.Pin)80;
+        private const Cpu.Pin DebugLedPin = Cpu.Pin.GPIO_NONE;
 
-        private Microsoft.SPOT.Hardware.OutputPort debugLed;
+        private Microsoft.SPOT.Hardware.OutputPort debugled = new OutputPort(DebugLedPin, false);
         /// <summary>
-        /// Turns the debug LED on or off.
+        /// Turns the debug LED on or off
         /// </summary>
         /// <param name="on">True if the debug LED should be on</param>
         public override void SetDebugLED(bool on)
         {
-            if (debugLed == null)
-            {
-   //             if (DebugLedPin == Cpu.Pin.GPIO_NONE) return;
-                debugLed = new OutputPort(DebugLedPin, false);
-            }
-
-            debugLed.Write(on);
+            debugled.Write(on);
         }
 
         /// <summary>
@@ -211,7 +176,7 @@ namespace EGIoTKit.Gadgeteer
         /// </summary>
         public override string MainboardName
         {
-            get { return "GR Sakura IoT Kit"; }
+            get { return "IoYT GR_PEACH_IoT_Kit"; }
         }
 
         /// <summary>
@@ -222,9 +187,79 @@ namespace EGIoTKit.Gadgeteer
             get { return "1.0"; }
         }
 
-        static Cpu.AnalogChannel acThermistor = (Cpu.AnalogChannel)5;   // Analog 5
-        AnalogInput aiThermistor;
-
-
     }
+
+
+
+    // This example class can be used to implement Analog Out support, if present on this mainboard
+    internal class GR_PEACH_IoT_Kit_AnalogOut : GT.Socket.SocketInterfaces.AnalogOutput
+    {
+        // Declare a mainboard-specific analog output interface here (set to null since it is inactive)
+        private Object aout = null;
+
+        Cpu.Pin pin;
+        readonly double _minVoltage = 0;
+        readonly double _maxVoltage = 3.3;
+
+        public GR_PEACH_IoT_Kit_AnalogOut(Cpu.Pin pin)
+        {
+            this.pin = pin;
+        }
+
+        public double MinOutputVoltage
+        {
+            get
+            {
+                return _minVoltage;
+            }
+        }
+
+        public double MaxOutputVoltage
+        {
+            get
+            {
+                return _maxVoltage;
+            }
+        }
+
+        public bool Active
+        {
+            get
+            {
+                return aout != null;
+            }
+
+            set
+            {
+                if (value == Active) return;
+                if (value)
+                {
+                    // Instantiate a mainboard-specific analog output interface here
+                    // e.g. aout = new AOUT(pin);
+                }
+                else
+                {
+                    // Stop the mainboard-specific analog output interface here
+                    // e.g. aout.Dispose();
+                    aout = null;
+                }
+            }
+        }
+
+        public void SetVoltage(double voltage)
+        {
+            Active = true;
+
+            // Check that voltage does not fall outside of mix/max range
+            if (voltage < _minVoltage)
+                throw new ArgumentOutOfRangeException("The minimum voltage of the analog output interface is 0.0V");
+
+            if (voltage > _maxVoltage)
+                throw new ArgumentOutOfRangeException("The maximum voltage of the analog output interface is 3.3V");
+
+            // Use the mainboard-specific analog
+            // aout.Set(voltageInUnits);
+        }
+    }
+
 }
