@@ -8,8 +8,8 @@
             Type="IoYT.Gadgeteer.GR_PEACH_IoT_Kit"
             HardwareVersion="1.0"
             Image="Resources\GR_PEACH_IOT_KIT.png"
-            BoardWidth="77"
-            BoardHeight="67"
+            BoardWidth="461"
+            BoardHeight="355"
             MinimumGadgeteerCoreVersion="2.42.500"
             HelpUrl=""
             >
@@ -38,28 +38,39 @@
       <!-- This is a list of sockets provided by this mainboard for modules to be attached to. -->
       <ProvidedSockets>
 
-        <ProvidedSocket Label="1" Left="10" Top="20" Orientation="90" ConstructorParameter="1">
+        <ProvidedSocket Label="1" Left="385" Top="60" Orientation="90" ConstructorParameter="1">
           <Types>
             <Type>A</Type>
-            <Type>I</Type>
-            <Type>X</Type>
+            <Type>P</Type>
           </Types>
           <!-- If mainboard sockets share pins (e.g. for I2C, SPI, or just shared GPIOs), then this should be specified using the SharedPinMaps element as for I2C below. -->
           <!-- Specify SharedOnly = "true" if the pin cannot be used in a non-shared fashion, e.g. for I2C the pins have pull-ups on the mainboard so they should not be used as general GPIOs. -->
           <SharedPinMaps>
-            <SharedPinMap NetId="I2CSDA" SocketPin="8" SharedOnly="true"/>
-            <SharedPinMap NetId="I2CSCL" SocketPin="9" SharedOnly="true"/>
+ <!--           <SharedPinMap NetId="I2CSDA" SocketPin="8" SharedOnly="true"/>
+            <SharedPinMap NetId="I2CSCL" SocketPin="9" SharedOnly="true"/>  -->
           </SharedPinMaps>
         </ProvidedSocket>
 
-        <ProvidedSocket Label="2" Left="30" Top="20" Orientation="90" ConstructorParameter="2">
+        <ProvidedSocket Label="2" Left="385" Top="145" Orientation="90" ConstructorParameter="2">
           <Types>
-            <Type>D</Type>
-            <Type>I</Type>
+            <Type>S</Type>
+            <Type>U</Type>
+            <Type>Y</Type>
           </Types>
-          <SharedPinMaps>
+          <SharedPinMaps><!--
             <SharedPinMap NetId="I2CSDA" SocketPin="8" SharedOnly="true"/>
-            <SharedPinMap NetId="I2CSCL" SocketPin="9" SharedOnly="true"/>
+            <SharedPinMap NetId="I2CSCL" SocketPin="9" SharedOnly="true"/> -->
+          </SharedPinMaps>
+        </ProvidedSocket>
+
+        <ProvidedSocket Label="3" Left="385" Top="232" Orientation="90" ConstructorParameter="2">
+          <Types>
+            <Type>I</Type>
+            <Type>X</Type>
+          </Types>
+          <SharedPinMaps> <!--
+            <SharedPinMap NetId="I2CSDA" SocketPin="8" SharedOnly="true"/>
+            <SharedPinMap NetId="I2CSCL" SocketPin="9" SharedOnly="true"/>  -->
           </SharedPinMaps>
         </ProvidedSocket>
 
