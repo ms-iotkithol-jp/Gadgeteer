@@ -5,7 +5,7 @@
     <!-- For file paths, do not use forward slash (/), use backslash (\) or it fails in Windows XP. -->
     <MainboardDefinition
             Name="GR_PEACH_IoT_Kit"
-            Type="IoYT.Gadgeteer.GR_PEACH_IoT_Kit"
+            Type="Algayn.Gadgeteer.GR_PEACH_IoT_Kit"
             HardwareVersion="1.0"
             Image="Resources\GR_PEACH_IOT_KIT.png"
             BoardWidth="461"
@@ -24,14 +24,14 @@
         <!-- This lists the assemblies which provides the API to this mainboard, i.e. the output assemblies of this template. -->
         <!-- If you do not provide support for both NETMF 4.1 and 4.2, the relevant lines should be removed -->
         <!-- NB you should use the same name for the same assembly's NETMF 4.1 and NETMF 4.2 versions, since this will make it easier for users to change framework versions -->
-        <!-- <Assembly MFVersion="4.1" Name="IoYT.Gadgeteer.GR_PEACH_IoT_Kit"/> -->
-        <!-- <Assembly MFVersion="4.2" Name="IoYT.Gadgeteer.GR_PEACH_IoT_Kit"/> -->
-        <Assembly MFVersion="4.3" Name="IoYT.Gadgeteer.GR_PEACH_IoT_Kit"/>
+        <!-- <Assembly MFVersion="4.1" Name="Algayn.Gadgeteer.GR_PEACH_IoT_Kit"/> -->
+        <!-- <Assembly MFVersion="4.2" Name="Algayn.Gadgeteer.GR_PEACH_IoT_Kit"/> -->
+        <Assembly MFVersion="4.3" Name="Algayn.Gadgeteer.GR_PEACH_IoT_Kit"/>
 
         <!-- If your mainboard driver relies on another assembly, then list it here (and see the msm.wxs file since you need to include it in the installer too), e.g.: -->
         <!--
-        <Assembly MFVersion="4.1" Name="IoYT.CustomAssembly"/>
-        <Assembly MFVersion="4.2" Name="IoYT.CustomAssembly"/>
+        <Assembly MFVersion="4.1" Name="Algayn.CustomAssembly"/>
+        <Assembly MFVersion="4.2" Name="Algayn.CustomAssembly"/>
         -->
       </Assemblies>
 
@@ -86,9 +86,9 @@
         -->
 
         <!-- The mainboard assembly itself (as listed under <Assemblies> above) should also be listed here, to enable modules representing built-in functionality of a mainboard.-->
-        <Assembly MFVersion="4.1" Name="IoYT.Gadgeteer.GR_PEACH_IoT_Kit" />
-        <Assembly MFVersion="4.2" Name="IoYT.Gadgeteer.GR_PEACH_IoT_Kit" />
-        <Assembly MFVersion="4.3" Name="IoYT.Gadgeteer.GR_PEACH_IoT_Kit" />
+    <!--    <Assembly MFVersion="4.1" Name="Algayn.Gadgeteer.GR_PEACH_IoT_Kit" />
+        <Assembly MFVersion="4.2" Name="Algayn.Gadgeteer.GR_PEACH_IoT_Kit" />  -->
+        <Assembly MFVersion="4.3" Name="Algayn.Gadgeteer.GR_PEACH_IoT_Kit" />
       </LibrariesProvided>
 
       <!-- Uncomment to specify power consumption data for use by the VS designer. -->

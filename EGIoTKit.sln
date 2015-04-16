@@ -1,7 +1,7 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 2013
-VisualStudioVersion = 12.0.30723.0
+VisualStudioVersion = 12.0.31101.0
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "EGIoTKit", "EGIoTKit\EGIoTKit.csproj", "{9EB87637-0162-487D-BBC2-888B49CBF652}"
 EndProject
@@ -24,6 +24,8 @@ EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GR_PEACH_IoT_Kit_43", "GR_PEACH_IoT_Kit\GR_PEACH_IoT_Kit_43\GR_PEACH_IoT_Kit_43.csproj", "{7971365B-9216-4027-AC9B-EFBA9C4D01E9}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GR_PEACH_IoT_Kit", "GR_PEACH_IoT_Kit\GR_PEACH_IoT_Kit\GR_PEACH_IoT_Kit.csproj", "{714C7CE3-89AC-4950-8EE7-8ED981B43940}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Algyan", "Algyan\Algyan.csproj", "{6F91C457-C087-4D35-8E70-EDFBA9548F03}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -125,6 +127,16 @@ Global
 		{714C7CE3-89AC-4950-8EE7-8ED981B43940}.Release|Mixed Platforms.ActiveCfg = Release|Any CPU
 		{714C7CE3-89AC-4950-8EE7-8ED981B43940}.Release|Mixed Platforms.Build.0 = Release|Any CPU
 		{714C7CE3-89AC-4950-8EE7-8ED981B43940}.Release|x86.ActiveCfg = Release|Any CPU
+		{6F91C457-C087-4D35-8E70-EDFBA9548F03}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{6F91C457-C087-4D35-8E70-EDFBA9548F03}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{6F91C457-C087-4D35-8E70-EDFBA9548F03}.Debug|Mixed Platforms.ActiveCfg = Debug|Any CPU
+		{6F91C457-C087-4D35-8E70-EDFBA9548F03}.Debug|Mixed Platforms.Build.0 = Debug|Any CPU
+		{6F91C457-C087-4D35-8E70-EDFBA9548F03}.Debug|x86.ActiveCfg = Debug|Any CPU
+		{6F91C457-C087-4D35-8E70-EDFBA9548F03}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{6F91C457-C087-4D35-8E70-EDFBA9548F03}.Release|Any CPU.Build.0 = Release|Any CPU
+		{6F91C457-C087-4D35-8E70-EDFBA9548F03}.Release|Mixed Platforms.ActiveCfg = Release|Any CPU
+		{6F91C457-C087-4D35-8E70-EDFBA9548F03}.Release|Mixed Platforms.Build.0 = Release|Any CPU
+		{6F91C457-C087-4D35-8E70-EDFBA9548F03}.Release|x86.ActiveCfg = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

@@ -58,4 +58,10 @@
     <Reference Include="System" />
     <Reference Include="System.IO" />
   </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\..\Algyan\Algyan.csproj">
+      <Project>{6F91C457-C087-4D35-8E70-EDFBA9548F03}</Project>
+      <Name>Algyan</Name>
+    </ProjectReference>
+  </ItemGroup>
 </Project>

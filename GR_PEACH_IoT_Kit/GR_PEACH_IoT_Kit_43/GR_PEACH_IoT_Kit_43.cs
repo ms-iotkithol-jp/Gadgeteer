@@ -5,12 +5,12 @@ using Microsoft.SPOT.Hardware;
 using GT = Gadgeteer;
 using GTM = Gadgeteer.Modules;
 
-namespace IoYT.Gadgeteer
+namespace Algayn.Gadgeteer
 {
     /// <summary>
-    /// Support class for IoYT GR_PEACH_IoT_Kit for Microsoft .NET Gadgeteer
+    /// Support class for Algayn GR_PEACH_IoT_Kit for Microsoft .NET Gadgeteer
     /// </summary>
-    public class GR_PEACH_IoT_Kit : GT.Mainboard
+    public class GR_PEACH_IoT_Kit : Algyan.Gadgeteer.IoTKitBoard
     {
         // The mainboard constructor gets called before anything else in Gadgeteer (module constructors, etc), 
         // so it can set up fields in Gadgeteer.dll specifying socket types supported, etc.
@@ -211,7 +211,7 @@ namespace IoYT.Gadgeteer
         /// </summary>
         public override string MainboardName
         {
-            get { return "IoYT GR_PEACH_IoT_Kit"; }
+            get { return "Algayn GR_PEACH_IoT_Kit"; }
         }
 
         /// <summary>
