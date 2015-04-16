@@ -5,10 +5,10 @@ using Microsoft.SPOT.Hardware;
 using GT = Gadgeteer;
 using GTM = Gadgeteer.Modules;
 
-namespace Algayn.Gadgeteer
+namespace Algyan.Gadgeteer
 {
     /// <summary>
-    /// Support class for Algayn GR_PEACH_IoT_Kit for Microsoft .NET Gadgeteer
+    /// Support class for Algyan GR_PEACH_IoT_Kit for Microsoft .NET Gadgeteer
     /// </summary>
     public class GR_PEACH_IoT_Kit : Algyan.Gadgeteer.IoTKitBoard
     {
@@ -20,6 +20,8 @@ namespace Algayn.Gadgeteer
         /// </summary>
         public GR_PEACH_IoT_Kit()
         {
+            // TODO: create instances of accelerometer and temperature sensors here
+
             // comment the following if you do not support NativeI2C for faster DaisyLink performance
             // otherwise, the DaisyLink I2C interface will be supported in Gadgeteer.dll in managed code.
             GT.SocketInterfaces.I2CBusIndirector nativeI2C = (s, sdaPin, sclPin, address, clockRateKHz, module) => new InteropI2CBus(s, sdaPin, sclPin, address, clockRateKHz, module);
@@ -211,7 +213,7 @@ namespace Algayn.Gadgeteer
         /// </summary>
         public override string MainboardName
         {
-            get { return "Algayn GR_PEACH_IoT_Kit"; }
+            get { return "Algyan GR_PEACH_IoT_Kit"; }
         }
 
         /// <summary>
@@ -222,5 +224,23 @@ namespace Algayn.Gadgeteer
             get { return "1.0"; }
         }
 
+        private Algyan.Gadgeteer.Modules.AccelerometerSensor accelerometerSensor;
+        private Algyan.Gadgeteer.Modules.TemperatureSensor temperatureSensor;
+        private Algyan.Gadgeteer.Modules.Relay relay;
+
+        public override Algyan.Gadgeteer.Modules.AccelerometerSensor AccelerometerSensor
+        {
+            get { return accelerometerSensor; }
+        }
+
+        public override Algyan.Gadgeteer.Modules.TemperatureSensor TemperatureSensor
+        {
+            get { return temperatureSensor; }
+        }
+
+        public override Algyan.Gadgeteer.Modules.Relay Relay
+        {
+            get { return relay; }
+        }
     }
 }

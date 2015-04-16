@@ -2,10 +2,10 @@
 using System.Runtime.CompilerServices;
 using System.Runtime.InteropServices;
 
-[assembly: AssemblyTitle("Algayn.Gadgeteer.GR_PEACH_IoT_Kit")]
-[assembly: AssemblyDescription("NETMF 4.3 driver for GR_PEACH_IoT_Kit mainboard made by Algayn for Microsoft .NET Gadgeteer")]
+[assembly: AssemblyTitle("Algyan.Gadgeteer.GR_PEACH_IoT_Kit")]
+[assembly: AssemblyDescription("NETMF 4.3 driver for GR_PEACH_IoT_Kit mainboard made by Algyan for Microsoft .NET Gadgeteer")]
 [assembly: AssemblyConfiguration("")]
-[assembly: AssemblyCompany("Algayn")]
+[assembly: AssemblyCompany("Algyan")]
 [assembly: AssemblyProduct("GR_PEACH_IoT_Kit")]
 [assembly: AssemblyCopyright("")]
 [assembly: AssemblyTrademark("")]

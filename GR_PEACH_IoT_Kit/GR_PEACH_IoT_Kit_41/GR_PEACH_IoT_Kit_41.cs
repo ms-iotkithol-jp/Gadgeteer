@@ -4,10 +4,10 @@ using Microsoft.SPOT.Hardware;
 
 using GT = Gadgeteer;
 
-namespace Algayn.Gadgeteer
+namespace Algyan.Gadgeteer
 {
     /// <summary>
-    /// Support class for Algayn GR_PEACH_IoT_Kit for Microsoft .NET Gadgeteer
+    /// Support class for Algyan GR_PEACH_IoT_Kit for Microsoft .NET Gadgeteer
     /// </summary>
     public class GR_PEACH_IoT_Kit : GT.Mainboard
     {
@@ -136,7 +136,7 @@ namespace Algayn.Gadgeteer
         /// </summary>
         public override string MainboardName
         {
-            get { return "Algayn GR_PEACH_IoT_Kit"; }
+            get { return "Algyan GR_PEACH_IoT_Kit"; }
         }
 
         /// <summary>

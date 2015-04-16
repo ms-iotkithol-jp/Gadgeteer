@@ -9,7 +9,7 @@
   to point to your kit, and comment out the line above.  You also need to edit AssemblyInfo.cs.  See the kit readme.txt 
   for more details of how and why to do this. -->
   <!--
-  <?include $(var.SourcePath)..\..\..\..\..\Kits\Algayn\KitName\Software\KitName\version.wxi ?>
+  <?include $(var.SourcePath)..\..\..\..\..\Kits\Algyan\KitName\Software\KitName\version.wxi ?>
   <?define MainboardSoftwareVersion = "$(var.KitVersion)" ?>
   -->
 
@@ -17,10 +17,10 @@
   <?define SafeMainboardName = "GR_PEACH_IoT_Kit" ?>
 
   <!-- SafeManufacturer should match the manufacturer name printed on the mainboard PCB, without any spaces/punctuation. -->
-  <?define SafeManufacturer = "Algayn" ?>
+  <?define SafeManufacturer = "Algyan" ?>
 
   <!-- FullManufacturer can have spaces, e.g. Microsoft Research.  This shows up as the manufacturer name in add/remove programs. -->
-  <?define FullManufacturer = "Algayn" ?>
+  <?define FullManufacturer = "Algyan" ?>
 
   <!-- These define which versions of NETMF are supported - comment out or delete any unsupported NETMF versions. -->
   <!-- <?define NETMF41Supported ?> -->
