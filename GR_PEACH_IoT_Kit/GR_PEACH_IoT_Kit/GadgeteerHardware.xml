@@ -7,7 +7,7 @@
             Name="GR_PEACH_IoT_Kit"
             Type="Algyan.Gadgeteer.GR_PEACH_IoT_Kit"
             HardwareVersion="1.0"
-            Image="Resources\GR_PEACH_IOT_KIT.png"
+            Image="GR_PEACH_IOT_KIT.png"
             BoardWidth="461"
             BoardHeight="355"
             MinimumGadgeteerCoreVersion="2.42.500"

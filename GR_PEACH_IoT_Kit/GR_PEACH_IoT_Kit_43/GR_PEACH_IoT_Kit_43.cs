@@ -79,6 +79,8 @@ namespace Algyan.Gadgeteer
             socket.PWM9 = Cpu.PWMChannel.PWM_2;
             socket.I2CBusIndirector = nativeI2C;
             GT.Socket.SocketInterfaces.RegisterSocket(socket);
+
+            debugLed = new Algyan.Gadgeteer.Sensors.DebugLed(DebugLedPin);
         }
 
         private class InteropI2CBus : GT.SocketInterfaces.I2CBus
@@ -182,22 +184,36 @@ namespace Algyan.Gadgeteer
         }
 
         // change the below to the debug led pin on this mainboard
-        private const Cpu.Pin DebugLedPin = Cpu.Pin.GPIO_NONE;
+        //private const Cpu.Pin DebugLedPin = Cpu.Pin.GPIO_NONE;
+        private const Cpu.Pin DebugLedPin = (Cpu.Pin)0x6c;
 
-        private Microsoft.SPOT.Hardware.OutputPort debugLed;
+        //private Microsoft.SPOT.Hardware.OutputPort debugLed;
         /// <summary>
         /// Turns the debug LED on or off.
         /// </summary>
         /// <param name="on">True if the debug LED should be on</param>
         public override void SetDebugLED(bool on)
         {
-            if (debugLed == null)
-            {
-                if (DebugLedPin == Cpu.Pin.GPIO_NONE) return;
-                debugLed = new OutputPort(DebugLedPin, false);
-            }
+            if (DebugLed == null)
+                return;
 
-            debugLed.Write(on);
+            DebugLed.SetDebugLed(on);
+        }
+
+        public void PulseDebugLed()
+        {
+            if (DebugLed == null)
+                return;
+
+            DebugLed.PulseDebugLed();
+        }
+
+        public void PulseDebugLed(int length, int times)
+        {
+            if (DebugLed == null)
+                return;
+
+            DebugLed.PulseDebugLed(length, times);
         }
 
         /// <summary>
@@ -205,7 +221,6 @@ namespace Algyan.Gadgeteer
         /// </summary>
         public override void PostInit()
         {
-            return;
         }
 
         /// <summary>
@@ -228,6 +243,8 @@ namespace Algyan.Gadgeteer
         private Algyan.Gadgeteer.Modules.TemperatureSensor temperatureSensor;
         private Algyan.Gadgeteer.Modules.Relay relay;
 
+        private Algyan.Gadgeteer.Modules.DebugLed debugLed;
+
         public override Algyan.Gadgeteer.Modules.AccelerometerSensor AccelerometerSensor
         {
             get { return accelerometerSensor; }
@@ -241,6 +258,11 @@ namespace Algyan.Gadgeteer
         public override Algyan.Gadgeteer.Modules.Relay Relay
         {
             get { return relay; }
+        }
+
+        public override Modules.DebugLed DebugLed
+        {
+            get { return debugLed; }
         }
     }
 }
