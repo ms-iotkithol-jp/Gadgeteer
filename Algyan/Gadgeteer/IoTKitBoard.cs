@@ -10,6 +10,8 @@ namespace Algyan.Gadgeteer
         public abstract Algyan.Gadgeteer.Modules.TemperatureSensor TemperatureSensor { get; }
         public abstract Algyan.Gadgeteer.Modules.Relay Relay { get; }
 
+        public abstract Algyan.Gadgeteer.Modules.DebugLed DebugLed { get; }
+
         public ILogger Logger { get; set; }
         public const string EOL = "\\n";
     }
