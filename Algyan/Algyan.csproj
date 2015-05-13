@@ -32,6 +32,7 @@
     <Compile Include="Gadgeteer\IoTKitBoard.cs" />
     <Compile Include="Gadgeteer\Modules\AccelerometerSensor.cs" />
     <Compile Include="Gadgeteer\Modules\DebugLed.cs" />
+    <Compile Include="Gadgeteer\Modules\Led.cs" />
     <Compile Include="Gadgeteer\Modules\Relay.cs" />
     <Compile Include="Gadgeteer\Modules\TemperatureSensor.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

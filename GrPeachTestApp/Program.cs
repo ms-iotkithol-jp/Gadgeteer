@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections;
 using System.Threading;
+using Algyan.Gadgeteer;
 using Microsoft.SPOT;
 using Microsoft.SPOT.Presentation;
 using Microsoft.SPOT.Presentation.Controls;
@@ -41,16 +42,49 @@ namespace GrPeachTestApp
             // Use Debug.Print to show messages in Visual Studio's "Output" window during debugging.
             Debug.Print("Program Started");
 
-            var isLightOn = false;
-            (new Thread(() =>
+            //var isLightOn = false;
+            //(new Thread(() =>
+            //{
+            //    while (true)
+            //    {
+            //        isLightOn = !isLightOn;
+            //        Mainboard.SetDebugLED(isLightOn);
+            //        Thread.Sleep(1000);
+            //    }
+            //})).Start();
+
+            LedTest();
+        }
+
+        private void LedTest()
+        {
+            var peach = (IoTKitBoard) Mainboard;
+
+            while (true)
             {
-                while (true)
-                {
-                    isLightOn = !isLightOn;
-                    Mainboard.SetDebugLED(isLightOn);
-                    Thread.Sleep(1000);
-                }
-            })).Start();
+                Mainboard.SetDebugLED(true);
+                Thread.Sleep(1000);
+                Mainboard.SetDebugLED(false);
+                Thread.Sleep(1000);
+
+                peach.PulseDebugLed(100, 5);
+                Thread.Sleep(1000);
+
+                peach.RedLed.SetLed(true);
+                Thread.Sleep(1000);
+                peach.RedLed.SetLed(false);
+                Thread.Sleep(1000);
+
+                peach.GreenLed.SetLed(true);
+                Thread.Sleep(1000);
+                peach.GreenLed.SetLed(false);
+                Thread.Sleep(1000);
+
+                peach.BlueLed.SetLed(true);
+                Thread.Sleep(1000);
+                peach.BlueLed.SetLed(false);
+                Thread.Sleep(1000);
+            }
         }
     }
 }

@@ -80,7 +80,11 @@ namespace Algyan.Gadgeteer
             socket.I2CBusIndirector = nativeI2C;
             GT.Socket.SocketInterfaces.RegisterSocket(socket);
 
+            // Add Debug LED (User LED) and Color LEDs on GR-Peach 
             debugLed = new Algyan.Gadgeteer.Sensors.DebugLed(DebugLedPin);
+            redLed = new Algyan.Gadgeteer.Sensors.Led(RedPin);
+            greenLed = new Algyan.Gadgeteer.Sensors.Led(GreenPin);
+            blueLed = new Algyan.Gadgeteer.Sensors.Led(BluePin);
         }
 
         private class InteropI2CBus : GT.SocketInterfaces.I2CBus
@@ -165,9 +169,6 @@ namespace Algyan.Gadgeteer
             throw new NotSupportedException("This mainboard does not support an onboard display controller.");
         }
 
-        /// <summary>
-        /// Called when the onboard display controller's display is disconnected, so any resources used by the onboard display controller could be reclaimed. 
-        /// </summary>
         protected override void OnOnboardControllerDisplayDisconnected()
         {
             // it is optional to do anything with this method
@@ -200,7 +201,10 @@ namespace Algyan.Gadgeteer
             DebugLed.SetDebugLed(on);
         }
 
-        public void PulseDebugLed()
+        /// <summary>
+        /// 
+        /// </summary>
+        public override void PulseDebugLed()
         {
             if (DebugLed == null)
                 return;
@@ -208,13 +212,17 @@ namespace Algyan.Gadgeteer
             DebugLed.PulseDebugLed();
         }
 
-        public void PulseDebugLed(int length, int times)
+        public override void PulseDebugLed(int length, int times)
         {
             if (DebugLed == null)
                 return;
 
             DebugLed.PulseDebugLed(length, times);
         }
+
+        private const Cpu.Pin RedPin = (Cpu.Pin)0x6d;       // Red
+        private const Cpu.Pin GreenPin = (Cpu.Pin)0x6e;     // Green
+        private const Cpu.Pin BluePin = (Cpu.Pin)0x6f;      // Blue
 
         /// <summary>
         /// This performs post-initialization tasks for the mainboard.  It is called by Gadgeteer.Program.Run and does not need to be called manually.
@@ -244,6 +252,9 @@ namespace Algyan.Gadgeteer
         private Algyan.Gadgeteer.Modules.Relay relay;
 
         private Algyan.Gadgeteer.Modules.DebugLed debugLed;
+        private Algyan.Gadgeteer.Modules.Led redLed;
+        private Algyan.Gadgeteer.Modules.Led greenLed;
+        private Algyan.Gadgeteer.Modules.Led blueLed;
 
         public override Algyan.Gadgeteer.Modules.AccelerometerSensor AccelerometerSensor
         {
@@ -263,6 +274,21 @@ namespace Algyan.Gadgeteer
         public override Modules.DebugLed DebugLed
         {
             get { return debugLed; }
+        }
+
+        public override Modules.Led RedLed
+        {
+            get { return redLed; }
+        }
+
+        public override Modules.Led GreenLed
+        {
+            get { return greenLed; }
+        }
+
+        public override Modules.Led BlueLed
+        {
+            get { return blueLed; }
         }
     }
 }

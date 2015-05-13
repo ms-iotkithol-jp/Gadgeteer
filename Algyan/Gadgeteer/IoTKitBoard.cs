@@ -11,6 +11,12 @@ namespace Algyan.Gadgeteer
         public abstract Algyan.Gadgeteer.Modules.Relay Relay { get; }
 
         public abstract Algyan.Gadgeteer.Modules.DebugLed DebugLed { get; }
+        public abstract Algyan.Gadgeteer.Modules.Led RedLed { get; }
+        public abstract Algyan.Gadgeteer.Modules.Led GreenLed { get; }
+        public abstract Algyan.Gadgeteer.Modules.Led BlueLed { get; }
+
+        public abstract void PulseDebugLed();
+        public abstract void PulseDebugLed(int length, int times);
 
         public ILogger Logger { get; set; }
         public const string EOL = "\\n";
