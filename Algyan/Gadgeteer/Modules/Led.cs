@@ -11,6 +11,9 @@ namespace Algyan.Gadgeteer.Modules
 
         public void SetLed(bool on)
         {
+            if (LedPort == null)
+                return;
+
             LedPort.Write(on);
         }
     }
