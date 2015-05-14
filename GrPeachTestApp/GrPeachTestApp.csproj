@@ -3,14 +3,12 @@
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <!--VS2010 product version-->
-    <ProductVersion>9.0.21022</ProductVersion>
-    <SchemaVersion>2.0</SchemaVersion>
-    <ProjectGuid>{7971365B-9216-4027-AC9B-EFBA9C4D01E9}</ProjectGuid>
-    <OutputType>Library</OutputType>
+    <ProjectGuid>{DE6278AB-5E23-4BFA-9C89-5F258B2BFE8A}</ProjectGuid>
+    <!--This is an executable-->
+    <OutputType>Exe</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>IoYT.Gadgeteer</RootNamespace>
-    <AssemblyName>IoYT.Gadgeteer.GR_PEACH_IoT_Kit</AssemblyName>
+    <RootNamespace>GrPeachTestApp</RootNamespace>
+    <AssemblyName>GrPeachTestApp</AssemblyName>
     <TargetFrameworkVersion>v4.3</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <!--Identify this as a MicroFramework, CSharp project-->
@@ -29,7 +27,6 @@
     <DefineConstants>DEBUG;TRACE</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
-    <DocumentationFile>bin\Debug\IoYT.Gadgeteer.GR_PEACH_IoT_Kit.XML</DocumentationFile>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
     <DebugType>pdbonly</DebugType>
@@ -38,34 +35,59 @@
     <DefineConstants>TRACE</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
-    <DocumentationFile>bin\Release\IoYT.Gadgeteer.GR_PEACH_IoT_Kit.XML</DocumentationFile>
   </PropertyGroup>
+  <!-- Everything below here is custom to .NET MF / Gadgeteer template-->
   <Import Project="$(NetMfTargetsBaseDir)$(TargetFrameworkVersion)\CSharp.Targets" />
   <ItemGroup>
+    <Compile Include="Program.generated.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Program.gadgeteer</DependentUpon>
+    </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="GR_PEACH_IoT_Kit_43.cs" />
-    <Compile Include="Sensors\Button.cs" />
-    <Compile Include="Sensors\DebugLed.cs" />
-    <Compile Include="Sensors\Led.cs" />
+    <Compile Include="Program.cs" />
+    <Compile Include="Resources.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Resources.resx</DependentUpon>
+    </Compile>
   </ItemGroup>
   <ItemGroup>
-    <Reference Include="Gadgeteer">
-      <SpecificVersion>false</SpecificVersion>
-      <Private>false</Private>
-    </Reference>
+    <Reference Include="Gadgeteer" />
+    <Reference Include="Microsoft.SPOT.Graphics" />
     <Reference Include="Microsoft.SPOT.Hardware" />
-    <Reference Include="Microsoft.SPOT.Hardware.SerialPort" />
-    <Reference Include="Microsoft.SPOT.IO" />
     <Reference Include="Microsoft.SPOT.Native" />
+    <Reference Include="Microsoft.SPOT.Net" />
+    <Reference Include="Microsoft.SPOT.TinyCore" />
     <Reference Include="mscorlib" />
-    <Reference Include="System" />
     <Reference Include="System.IO" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\..\Algyan\Algyan.csproj">
+    <EmbeddedResource Include="Resources.resx">
+      <SubType>Designer</SubType>
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>Resources.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Program.gadgeteer">
+      <Generator>GadgeteerFileCodeGenerator</Generator>
+      <LastGenOutput>Program.generated.cs</LastGenOutput>
+    </None>
+    <None Include="Program.gadgeteer.diagram">
+      <DependentUpon>Program.gadgeteer</DependentUpon>
+    </None>
+    <None Include="Resources\NinaB.tinyfnt" />
+    <None Include="Resources\small.tinyfnt" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\Algyan\Algyan.csproj">
       <Project>{6F91C457-C087-4D35-8E70-EDFBA9548F03}</Project>
       <Name>Algyan</Name>
     </ProjectReference>
+    <ProjectReference Include="..\GR_PEACH_IoT_Kit\GR_PEACH_IoT_Kit_43\GR_PEACH_IoT_Kit_43.csproj">
+      <Project>{7971365B-9216-4027-AC9B-EFBA9C4D01E9}</Project>
+      <Name>GR_PEACH_IoT_Kit_43</Name>
+    </ProjectReference>
   </ItemGroup>
-  <ItemGroup />
 </Project>

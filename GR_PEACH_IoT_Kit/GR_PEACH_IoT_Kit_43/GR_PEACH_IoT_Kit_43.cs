@@ -79,6 +79,15 @@ namespace Algyan.Gadgeteer
             socket.PWM9 = Cpu.PWMChannel.PWM_2;
             socket.I2CBusIndirector = nativeI2C;
             GT.Socket.SocketInterfaces.RegisterSocket(socket);
+
+            // Add Debug LED (User LED) and Color LEDs on GR-Peach 
+            debugLed = new Algyan.Gadgeteer.Sensors.DebugLed(DebugLedPin);
+            redLed = new Algyan.Gadgeteer.Sensors.Led(RedPin);
+            greenLed = new Algyan.Gadgeteer.Sensors.Led(GreenPin);
+            blueLed = new Algyan.Gadgeteer.Sensors.Led(BluePin);
+
+            // Add Button on GR-Peach
+            button = new Algyan.Gadgeteer.Sensors.Button(ButtonPin);
         }
 
         private class InteropI2CBus : GT.SocketInterfaces.I2CBus
@@ -163,9 +172,6 @@ namespace Algyan.Gadgeteer
             throw new NotSupportedException("This mainboard does not support an onboard display controller.");
         }
 
-        /// <summary>
-        /// Called when the onboard display controller's display is disconnected, so any resources used by the onboard display controller could be reclaimed. 
-        /// </summary>
         protected override void OnOnboardControllerDisplayDisconnected()
         {
             // it is optional to do anything with this method
@@ -182,30 +188,52 @@ namespace Algyan.Gadgeteer
         }
 
         // change the below to the debug led pin on this mainboard
-        private const Cpu.Pin DebugLedPin = Cpu.Pin.GPIO_NONE;
+        //private const Cpu.Pin DebugLedPin = Cpu.Pin.GPIO_NONE;
+        private const Cpu.Pin DebugLedPin = (Cpu.Pin)0x6c;
 
-        private Microsoft.SPOT.Hardware.OutputPort debugLed;
+        //private Microsoft.SPOT.Hardware.OutputPort debugLed;
         /// <summary>
         /// Turns the debug LED on or off.
         /// </summary>
         /// <param name="on">True if the debug LED should be on</param>
         public override void SetDebugLED(bool on)
         {
-            if (debugLed == null)
-            {
-                if (DebugLedPin == Cpu.Pin.GPIO_NONE) return;
-                debugLed = new OutputPort(DebugLedPin, false);
-            }
+            if (DebugLed == null)
+                return;
 
-            debugLed.Write(on);
+            DebugLed.SetDebugLed(on);
         }
+
+        /// <summary>
+        /// 
+        /// </summary>
+        public override void PulseDebugLed()
+        {
+            if (DebugLed == null)
+                return;
+
+            DebugLed.PulseDebugLed();
+        }
+
+        public override void PulseDebugLed(int length, int times)
+        {
+            if (DebugLed == null)
+                return;
+
+            DebugLed.PulseDebugLed(length, times);
+        }
+
+        private const Cpu.Pin RedPin = (Cpu.Pin)0x6d;       // Red
+        private const Cpu.Pin GreenPin = (Cpu.Pin)0x6e;     // Green
+        private const Cpu.Pin BluePin = (Cpu.Pin)0x6f;      // Blue
+
+        private const Cpu.Pin ButtonPin = (Cpu.Pin)0x60;    // Button
 
         /// <summary>
         /// This performs post-initialization tasks for the mainboard.  It is called by Gadgeteer.Program.Run and does not need to be called manually.
         /// </summary>
         public override void PostInit()
         {
-            return;
         }
 
         /// <summary>
@@ -228,6 +256,12 @@ namespace Algyan.Gadgeteer
         private Algyan.Gadgeteer.Modules.TemperatureSensor temperatureSensor;
         private Algyan.Gadgeteer.Modules.Relay relay;
 
+        private Algyan.Gadgeteer.Modules.DebugLed debugLed;
+        private Algyan.Gadgeteer.Modules.Led redLed;
+        private Algyan.Gadgeteer.Modules.Led greenLed;
+        private Algyan.Gadgeteer.Modules.Led blueLed;
+        private Algyan.Gadgeteer.Modules.Button button;
+
         public override Algyan.Gadgeteer.Modules.AccelerometerSensor AccelerometerSensor
         {
             get { return accelerometerSensor; }
@@ -241,6 +275,31 @@ namespace Algyan.Gadgeteer
         public override Algyan.Gadgeteer.Modules.Relay Relay
         {
             get { return relay; }
+        }
+
+        public override Modules.DebugLed DebugLed
+        {
+            get { return debugLed; }
+        }
+
+        public override Modules.Led RedLed
+        {
+            get { return redLed; }
+        }
+
+        public override Modules.Led GreenLed
+        {
+            get { return greenLed; }
+        }
+
+        public override Modules.Led BlueLed
+        {
+            get { return blueLed; }
+        }
+
+        public override Modules.Button Button
+        {
+            get { return button; }
         }
     }
 }
