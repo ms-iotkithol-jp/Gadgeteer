@@ -85,6 +85,9 @@ namespace Algyan.Gadgeteer
             redLed = new Algyan.Gadgeteer.Sensors.Led(RedPin);
             greenLed = new Algyan.Gadgeteer.Sensors.Led(GreenPin);
             blueLed = new Algyan.Gadgeteer.Sensors.Led(BluePin);
+
+            // Add Button on GR-Peach
+            button = new Algyan.Gadgeteer.Sensors.Button(ButtonPin);
         }
 
         private class InteropI2CBus : GT.SocketInterfaces.I2CBus
@@ -224,6 +227,8 @@ namespace Algyan.Gadgeteer
         private const Cpu.Pin GreenPin = (Cpu.Pin)0x6e;     // Green
         private const Cpu.Pin BluePin = (Cpu.Pin)0x6f;      // Blue
 
+        private const Cpu.Pin ButtonPin = (Cpu.Pin)0x60;    // Button
+
         /// <summary>
         /// This performs post-initialization tasks for the mainboard.  It is called by Gadgeteer.Program.Run and does not need to be called manually.
         /// </summary>
@@ -255,6 +260,7 @@ namespace Algyan.Gadgeteer
         private Algyan.Gadgeteer.Modules.Led redLed;
         private Algyan.Gadgeteer.Modules.Led greenLed;
         private Algyan.Gadgeteer.Modules.Led blueLed;
+        private Algyan.Gadgeteer.Modules.Button button;
 
         public override Algyan.Gadgeteer.Modules.AccelerometerSensor AccelerometerSensor
         {
@@ -289,6 +295,11 @@ namespace Algyan.Gadgeteer
         public override Modules.Led BlueLed
         {
             get { return blueLed; }
+        }
+
+        public override Modules.Button Button
+        {
+            get { return button; }
         }
     }
 }

@@ -44,6 +44,7 @@
   <ItemGroup>
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="GR_PEACH_IoT_Kit_43.cs" />
+    <Compile Include="Sensors\Button.cs" />
     <Compile Include="Sensors\DebugLed.cs" />
     <Compile Include="Sensors\Led.cs" />
   </ItemGroup>

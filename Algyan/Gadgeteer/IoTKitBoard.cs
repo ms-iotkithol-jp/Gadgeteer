@@ -15,6 +15,8 @@ namespace Algyan.Gadgeteer
         public abstract Algyan.Gadgeteer.Modules.Led GreenLed { get; }
         public abstract Algyan.Gadgeteer.Modules.Led BlueLed { get; }
 
+        public abstract Algyan.Gadgeteer.Modules.Button Button { get; }
+
         public abstract void PulseDebugLed();
         public abstract void PulseDebugLed(int length, int times);
 

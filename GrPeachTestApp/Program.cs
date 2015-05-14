@@ -25,23 +25,10 @@ namespace GrPeachTestApp
         // This method is run when the mainboard is powered up or reset.   
         void ProgramStarted()
         {
-            /*******************************************************************************************
-            Modules added in the Program.gadgeteer designer view are used by typing 
-            their name followed by a period, e.g.  button.  or  camera.
-            
-            Many modules generate useful events. Type +=<tab><tab> to add a handler to an event, e.g.:
-                button.ButtonPressed +=<tab><tab>
-            
-            If you want to do something periodically, use a GT.Timer and handle its Tick event, e.g.:
-                GT.Timer timer = new GT.Timer(1000); // every second (1000ms)
-                timer.Tick +=<tab><tab>
-                timer.Start();
-            *******************************************************************************************/
-
-
             // Use Debug.Print to show messages in Visual Studio's "Output" window during debugging.
             Debug.Print("Program Started");
 
+            //// Comment in for testing SetDebugLED method
             //var isLightOn = false;
             //(new Thread(() =>
             //{
@@ -53,7 +40,13 @@ namespace GrPeachTestApp
             //    }
             //})).Start();
 
-            LedTest();
+            //// Comment in for testing Color and Debug LEDs
+            //LedTest();
+
+            // Comment in for testing the button
+            var peach = (IoTKitBoard)Mainboard;
+            peach.Button.ButtonPressed += Button_ButtonPressed;
+            peach.Button.ButtonReleased += Button_ButtonReleased;
         }
 
         private void LedTest()
@@ -65,6 +58,9 @@ namespace GrPeachTestApp
                 Mainboard.SetDebugLED(true);
                 Thread.Sleep(1000);
                 Mainboard.SetDebugLED(false);
+                Thread.Sleep(1000);
+
+                peach.PulseDebugLed();
                 Thread.Sleep(1000);
 
                 peach.PulseDebugLed(100, 5);
@@ -85,6 +81,16 @@ namespace GrPeachTestApp
                 peach.BlueLed.SetLed(false);
                 Thread.Sleep(1000);
             }
+        }
+
+        void Button_ButtonPressed(Algyan.Gadgeteer.Modules.Button sender, Algyan.Gadgeteer.Modules.Button.ButtonState state)
+        {
+            Mainboard.SetDebugLED(true);
+        }
+
+        void Button_ButtonReleased(Algyan.Gadgeteer.Modules.Button sender, Algyan.Gadgeteer.Modules.Button.ButtonState state)
+        {
+            Mainboard.SetDebugLED(false);
         }
     }
 }
